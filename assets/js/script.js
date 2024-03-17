@@ -14,6 +14,13 @@ document.addEventListener("DOMContentLoaded", function(){
                 }
             })
         }
+        // listens for keydown event to see if Enter button is pushed and if so, run checkAnswer function
+        document.getElementById("answer-box").addEventListener("keydown", function(event){
+          if (event.key === 'Enter'){
+            checkAnswer();
+          }
+         })
+        
 
         runGame("addition");
     });
@@ -23,8 +30,9 @@ document.addEventListener("DOMContentLoaded", function(){
      * and adter the users last answer has been processed
      */
 function runGame(gameType){
-
+    //resets answer box to empty every time function is called
     document.getElementById('answer-box').value = '';
+    //focuses cursor to answer box after every submit
     document.getElementById('answer-box').focus();
     //creates 2 random numbers between 1 and 25
     let num1 = Math.floor(Math.random() * 25)+ 1;
