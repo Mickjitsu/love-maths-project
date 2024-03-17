@@ -37,7 +37,7 @@ function runGame(gameType){
 }
 /**
  * check the answer against first element in the 
- * calculatedcorrectanswer arra
+ * calculatedcorrectanswer array
  */
 function checkAnswer(){
     let userAnswer = parseInt(document.getElementById("answer-box").value);
@@ -46,9 +46,11 @@ function checkAnswer(){
 
     if (isCorrect){
         alert('Hey! You got it right :)')
+        incrementScore();
     }
     else {
         alert(`Awww.... you answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}`); 
+        incrementWrongAnswer();
     }
 
     runGame(calculatedAnswer[1]);
@@ -68,13 +70,20 @@ function calculateCorrectAnswer(){
         throw `unimplemented operator ${operator} aborting!`;
     }
 }
-
+/**
+ * gets the current score from the DOM and adds one if is correct
+ */
 function incrementScore(){
 
+    let oldScore = parseInt(document.getElementById("score").innerText);
+    document.getElementById("score").innerText = ++oldScore;
 }
-
+/**
+ * gets the current score from the DOM and minus one if is incorrect
+ */
 function incrementWrongAnswer(){
-
+    let oldScore = parseInt(document.getElementById("incorrect").innerText);
+    document.getElementById("incorrect").innerText = ++oldScore;
 }
 
 function displayAdditionQuestion(operand1, operand2){
